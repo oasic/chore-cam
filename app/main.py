@@ -39,18 +39,21 @@ def main():
         else: # ACTIVE state
             # if identity change, wait 10s and return to START
             if identity != prev_identity:
-                key = cv2.waitKey(10_000) & 0xFF
-                if key == ord('q'):
+                if should_exit(3_0000):
                     run_flag = False
                 state = START
 
-        # Wait 1 second for exit key press
-        key = cv2.waitKey(1000) & 0xFF
-        if key == ord('q'):
+        if should_exit():
             run_flag = False
 
     photo_grab.release()
-    time.sleep(1)
+    #time.sleep(1)
+
+def should_exit(wait_millis: int = 50):
+    # wait for exit key press
+    key = cv2.waitKey(wait_millis) & 0xFF
+    return key == ord('q')
+
 
 if __name__ == "__main__":
     typer.run(main)
