@@ -4,5 +4,7 @@ Automatically identifies family members and assigns personalized chores and remi
 
 ### Usage
 
-python -m app.main
+python -m app.main run
+python -m app.main photos <directory>
+python -m app.main --help
 
